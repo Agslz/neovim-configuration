@@ -9,6 +9,6 @@
 
 ![Neovim Config](screenshots/Screen1.png) 
 
-## If you have any questions or problems trying to install do not hesitate to tell me
+## If you have any questions or problems while you are installing, do not hesitate to tell me
  
 ## Have fun 🚀 
