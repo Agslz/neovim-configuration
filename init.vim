@@ -5,45 +5,86 @@ set showcmd
 set encoding=utf-8
 set showmatch
 set relativenumber
-set sw=1
+set sw=2
 
 call plug#begin('~/.vim/plugged')
 
-"Temas Gruvbox
+" TEMA GRUVBOX
 Plug 'sainnhe/gruvbox-material'
-"LSP
+
+" LSP
 Plug 'neovim/nvim-lspconfig'
-"Autocompletado
 Plug 'nvim-lua/completion-nvim'
-"Coc
 Plug 'neoclide/coc.nvim', {'branch': 'master', 'do': 'yarn install --frozen-lockfile'}
 
+" plugins para javascript
 Plug 'pangloss/vim-javascript'
+Plug 'maxmellon/vim-jsx-pretty'
 
-"Snippets para Js
+" snippets para javascript
+Plug 'SirVer/ultisnips'
+Plug 'mlaursen/vim-react-snippets'
+
+" EMMET
+Plug 'mattn/emmet-vim'
+
+" comentarios
+Plug 'tpope/vim-commentary'
+
+Plug 'Yggdroot/indentLine'
+
+Plug 'scrooloose/nerdtree'
+
+Plug 'ryanoasis/vim-devicons'
+
+Plug 'vim-airline/vim-airline'
+Plug 'vim-airline/vim-airline-themes'
 
 call plug#end()
 
-"Gruvbox Configuration
+
+" GRUVBOX configuracion
 set background=dark
 let g:gruvbox_material_background='medium'
 colorscheme gruvbox-material
-
-"LSP Configuracion
+" LSP configuracion
 
 lua << EOF
-
 require'lspconfig'.tsserver.setup{on_attach=require'completion'.on_attach}
-
 EOF
 
-" Coc Configuracion
-"___________________________________________________
-"
 
-" Set internal encoding of vim, not needed on neovim, since coc.nvim using some
-" unicode characters in the file autoload/float.vim
-set encoding=utf-8
+" snippets configuracion
+let g:UtilSnipsExpandTrigger="<tab>"
+
+" EMMET configuracion
+let g:user_emmet_mode='n'
+let g:user_emmet_leader_key=','
+let g:user_emmet_settings={
+\ 'javascript':{
+\ 'extends':'jsx'
+\ }
+\ }
+
+
+" Prettier configuracion
+command! -nargs=0 Prettier :CocCommand prettier.formatFile
+nnoremap <C-D> :Prettier<CR>
+
+" configuracion de comentarios
+nnoremap <space>/ :Commentary<CR>
+vnoremap <space>/ :Commentary<CR>
+
+" configuracion de airline
+let g:airline#extensions#tabline#enabled = 1
+
+" NERDTREE Configuracion
+let NERDTreeQuitOnOpen=1
+nnoremap <silent> <F2> :NERDTreeFind<CR>
+nnoremap <silent> <F3> :NERDTreeToggle<CR>
+
+"_________________________________________________________________________________
+"COC configuracion
 
 " TextEdit might fail if hidden is not set.
 set hidden
@@ -112,10 +153,12 @@ nmap <silent> gr <Plug>(coc-references)
 nnoremap <silent> K :call <SID>show_documentation()<CR>
 
 function! s:show_documentation()
-  if CocAction('hasProvider', 'hover')
+  if (index(['vim','help'], &filetype) >= 0)
+    execute 'h '.expand('<cword>')
+  elseif (coc#rpc#ready())
     call CocActionAsync('doHover')
   else
-    call feedkeys('K', 'in')
+    execute '!' . &keywordprg . " " . expand('<cword>')
   endif
 endfunction
 
