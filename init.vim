@@ -7,6 +7,20 @@ set showmatch
 set relativenumber
 set sw=2
 
+"Ctrl + S
+:nmap <c-s> :w<CR>
+:imap <c-s> <Esc>:w<CR>a
+
+"Ctrl + Z
+nnoremap <c-z> :u<CR>  
+inoremap <c-z> <c-o>:u<CR>
+
+"Ctrl + F
+"Ctrl + Shift + F
+
+map <C-F> /
+map <CS-F> :vimgrep /
+
 call plug#begin('~/.vim/plugged')
 
 " TEMA GRUVBOX
