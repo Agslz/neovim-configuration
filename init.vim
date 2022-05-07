@@ -10,6 +10,9 @@ set sw=2
 source $VIMRUNTIME/mswin.vim
 behave mswin
 
+map <C-c> "+y
+map <C-v> "+p
+
 :nmap <c-s> :w<CR>
 :imap <c-s> <Esc>:w<CR>a
 
