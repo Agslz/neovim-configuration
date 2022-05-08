@@ -7,8 +7,6 @@ set showmatch
 set relativenumber
 set sw=2
 
-source $VIMRUNTIME/mswin.vim
-behave mswin
 
 map <C-c> "+y
 map <C-v> "+p
@@ -54,6 +52,8 @@ Plug 'vim-airline/vim-airline-themes'
 
 call plug#end()
 
+source $VIMRUNTIME/mswin.vim
+behave mswin
 
 " GRUVBOX configuracion
 set background=dark
