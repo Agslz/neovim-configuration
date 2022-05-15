@@ -7,7 +7,6 @@ set showmatch
 set relativenumber
 set sw=2
 
-
 map <C-c> "+y
 map <C-v> "+p
 
@@ -19,26 +18,26 @@ inoremap <c-z> <c-o>:u<CR>
 
 call plug#begin('~/.vim/plugged')
 
-" TEMA GRUVBOX
+"Tema GruvBox
 Plug 'sainnhe/gruvbox-material'
 
-" LSP
+"Lsp
 Plug 'neovim/nvim-lspconfig'
 Plug 'nvim-lua/completion-nvim'
 Plug 'neoclide/coc.nvim', {'branch': 'master', 'do': 'yarn install --frozen-lockfile'}
 
-" plugins para javascript
+"Plugins para javascript
 Plug 'pangloss/vim-javascript'
 Plug 'maxmellon/vim-jsx-pretty'
 
-" snippets para javascript
+"Snippets para javascript
 Plug 'SirVer/ultisnips'
 Plug 'mlaursen/vim-react-snippets'
 
-" EMMET
+"Emmet
 Plug 'mattn/emmet-vim'
 
-" comentarios
+"Comentarios
 Plug 'tpope/vim-commentary'
 
 Plug 'Yggdroot/indentLine'
@@ -55,21 +54,21 @@ call plug#end()
 source $VIMRUNTIME/mswin.vim
 behave mswin
 
-" GRUVBOX configuracion
+"Gruvbox configuracion
 set background=dark
 let g:gruvbox_material_background='medium'
 colorscheme gruvbox-material
-" LSP configuracion
+"LSP configuracion
 
 lua << EOF
 require'lspconfig'.tsserver.setup{on_attach=require'completion'.on_attach}
 EOF
 
 
-" snippets configuracion
+"Snippets configuracion
 let g:UtilSnipsExpandTrigger="<tab>"
 
-" EMMET configuracion
+"Emmet configuracion
 let g:user_emmet_mode='n'
 let g:user_emmet_leader_key=','
 let g:user_emmet_settings={
@@ -79,18 +78,18 @@ let g:user_emmet_settings={
 \ }
 
 
-" Prettier configuracion
+"Prettier configuracion
 command! -nargs=0 Prettier :CocCommand prettier.formatFile
 nnoremap <C-D> :Prettier<CR>
 
-" configuracion de comentarios
+"Configuracion de comentarios
 nnoremap <space>/ :Commentary<CR>
 vnoremap <space>/ :Commentary<CR>
 
-" configuracion de airline
+"Configuracion de airline
 let g:airline#extensions#tabline#enabled = 1
 
-" NERDTREE Configuracion
+"NERDTREE Configuracion
 let NERDTreeQuitOnOpen=1
 nnoremap <silent> <F2> :NERDTreeFind<CR>
 nnoremap <silent> <F3> :NERDTreeToggle<CR>
